@@ -1,0 +1,223 @@
+/* =========================================================
+   Hailu Speciality Dental Clinic — global styling
+   Professional polish + responsive behaviour across devices
+   ========================================================= */
+
+/* Professional, readable font. Falls back cleanly if offline. */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --brand: #0891b2;      /* cyan-600, matches Tailwind's cyan-600 */
+  --brand-dark: #0e7490; /* cyan-700 */
+  --ink: #0f172a;        /* slate-900 */
+  --radius-lg: 1.25rem;
+}
+
+/* ---------- Base / resets ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  /* Stops any accidental horizontal scrollbar on narrow phones,
+     which is one of the most common "site looks broken on mobile" bugs. */
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: var(--ink);
+}
+
+/* Smooth, consistent transitions on anything interactive by default */
+a,
+button {
+  transition: all 0.2s ease;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Accessibility: visible focus states ---------- */
+/* Keeps a clean look for mouse users but still shows a clear ring for
+   keyboard/tab navigation and screen-reader users. */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Forms ---------- */
+/* iOS Safari auto-zooms the page when an input's font-size is under 16px.
+   This one rule fixes the "page jumps/zooms when I tap a field" complaint
+   on iPhones without changing how the fields look. */
+
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+@media (min-width: 640px) {
+  input,
+  select,
+  textarea {
+    font-size: 0.875rem; /* back to the design's intended text-sm on larger screens */
+  }
+}
+
+/* ---------- Custom scrollbar (desktop/webkit) ---------- */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9; /* slate-100 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8; /* slate-400 */
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand);
+}
+
+/* ---------- Selection color to match brand ---------- */
+
+::selection {
+  background: #cffafe; /* cyan-100 */
+  color: #164e63; /* cyan-900 */
+}
+
+/* ---------- Fluid headings ---------- */
+/* clamp() lets headings scale smoothly between phones and desktops instead
+   of jumping abruptly at breakpoints — reads as more "designed", not
+   auto-generated. */
+
+h1 {
+  font-size: clamp(1.85rem, 5vw + 1rem, 3.75rem);
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw + 1rem, 2.25rem);
+  line-height: 1.2;
+}
+
+/* ---------- Cards & interactive elements ---------- */
+/* A slightly stronger, more tactile hover for anything using rounded-2xl,
+   which in this app is used for every card component (service, location,
+   review, gallery-style cards). Gives a subtle "lift" instead of the
+   default flat colour-only hover. */
+
+.rounded-2xl,
+.rounded-3xl {
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.2s ease, border-color 0.2s ease;
+}
+
+@media (hover: hover) {
+  a.rounded-2xl:hover,
+  button.rounded-2xl:hover,
+  div.rounded-2xl:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Primary buttons get a touch more depth on hover for a premium feel */
+button[class*="bg-cyan-600"]:hover,
+a[class*="bg-cyan-600"]:hover {
+  box-shadow: 0 10px 25px -8px rgba(8, 145, 178, 0.45);
+}
+
+/* ---------- Touch target comfort on small screens ---------- */
+/* Ensures buttons/links never feel cramped or hard to tap on a phone,
+   per accessibility guidance (min ~44px tap target). */
+
+@media (max-width: 767px) {
+  button,
+  a[role="button"],
+  nav button {
+    min-height: 44px;
+  }
+}
+
+/* ---------- Small-phone fine tuning (≤ 400px) ---------- */
+/* Covers narrow devices like older/smaller iPhones and budget Android
+   phones where default Tailwind breakpoints alone leave things a bit
+   cramped. */
+
+@media (max-width: 400px) {
+  h1 {
+    letter-spacing: -0.01em;
+  }
+
+  .max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Tighten up section vertical rhythm so content doesn't feel too spaced
+     out on very short/narrow viewports. */
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* ---------- Landscape phones ---------- */
+/* Prevents the hero from taking up the whole viewport height when a phone
+   is rotated sideways. */
+
+@media (max-height: 480px) and (orientation: landscape) {
+  section:first-of-type {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* ---------- Large screens ---------- */
+/* Keeps line length readable and content from feeling lost on very wide
+   monitors/ultrawides. */
+
+@media (min-width: 1600px) {
+  .max-w-7xl {
+    max-width: 90rem;
+  }
+}
+
+/* ---------- Print ---------- */
+/* If a patient prints the Locations page for directions, hide the nav/
+   sticky mobile bar so it isn't wasted on paper. */
+
+@media print {
+  nav,
+  footer,
+  .fixed {
+    display: none !important;
+  }
+}
