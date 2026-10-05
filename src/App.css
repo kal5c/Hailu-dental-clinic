@@ -53,6 +53,26 @@ img {
   height: auto;
 }
 
+/* Crop letterbox bars on phone photos of the clinic rooms. */
+.clinic-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-photo {
+  object-position: 52% 60%;
+  transform: scale(1.28);
+  transform-origin: center center;
+}
+
+.room-photo {
+  object-position: 78% 50%;
+  transform: scale(1.12);
+  transform-origin: center right;
+}
+
 /* ---------- Accessibility: visible focus states ---------- */
 /* Keeps a clean look for mouse users but still shows a clear ring for
    keyboard/tab navigation and screen-reader users. */
