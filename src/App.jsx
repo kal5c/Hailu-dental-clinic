@@ -29,7 +29,7 @@ import {
   whatsappLink,
 } from "./content";
 
-import receptionPhoto from "./assets/images/1p.png";
+import receptionPhoto from "./assets/images/magelogo.jpg";
 import treatmentRoomBluePhoto from "./assets/images/p2.png";
 import treatmentRoomBeigePhoto from "./assets/images/p3.png";
 import clinicLogo from "./assets/images/magelogo.jpg";
